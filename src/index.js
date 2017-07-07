@@ -1,9 +1,6 @@
 /**
  * Created by Hsiang on 2017/5/8.
  *
- *
- * @property {object} options - options
- *
  * ## 特殊情况
  *
  * 默认我们的H5是在各种浏览器中运行, 通过H5的api或者是地图服务提供上提供的获取地理位置接口得到当前的经纬度.
@@ -50,7 +47,6 @@ const ERROR_TYPE = {
   2: 'POSITION_UNAVAILABLE',
   3: 'TIMEOUT'
 }
-const inBrowser = typeof window !== 'undefined'
 class Geolocation {
   /**
    * @param {Object} options - 初始化的参数, 需要填入不同类型的Map信息
@@ -63,7 +59,7 @@ class Geolocation {
     this._default = {
       enableHighAccuracy: true, // 是否要求高精度地理位置信息
       maximumAge: 1000,         // 设置缓存时间为1s，1s后重新获取地理位置信息
-      timeout: 5000,            // 5s未返回信息则返回错误
+      timeout: 10000,            // 10s未返回信息则返回错误
       fallBack: 'aMap',         // 条件允许优先使用原生获取, 如果在IOS下是使用的是HTTP获取, 则使用备选, 这里是aMap
       [Q_MAP]: {
         key: 'OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77', // official example app key, please use geo.register() to replace
@@ -464,21 +460,23 @@ class Geolocation {
 
     if (!this._aMapGeolocation) {
       this._getScript('https://webapi.amap.com/maps?v=1.3&key=' + this._setting[A_MAP].key).then(() => {
-        try {
-          let map = new window.AMap.Map('')
-          map.plugin('AMap.Geolocation', () => {
-          /**
-           * @param {object} posOptions - 传入参数
-           * @param {boolean} [posOptions.enableHighAccuracy=true] - 是否使用高精度定位，默认:true
-           * @param {number} [posOptions.timeout=10000] - 超过10秒后停止定位，默认：无穷大
-           * @param {number} 9posOptions.maximumAge=00 - 定位结果缓存0毫秒，默认：0
-           * */
-            this._aMapGeolocation = new window.AMap.Geolocation(posOptions)
-            _getCurrentPosition()
-          })
-        } catch (err) {
-          errorFn && errorFn(err)
-        }
+        window.setTimeout(() => {
+          try {
+            let map = new window.AMap.Map('')
+            map.plugin('AMap.Geolocation', () => {
+            /**
+             * @param {object} posOptions - 传入参数
+             * @param {boolean} [posOptions.enableHighAccuracy=true] - 是否使用高精度定位，默认:true
+             * @param {number} [posOptions.timeout=10000] - 超过10秒后停止定位，默认：无穷大
+             * @param {number} 9posOptions.maximumAge=00 - 定位结果缓存0毫秒，默认：0
+             * */
+              this._aMapGeolocation = new window.AMap.Geolocation(posOptions)
+              _getCurrentPosition()
+            })
+          } catch (err) {
+            errorFn && errorFn(err)
+          }
+        }, 100)
       }, (err) => { errorFn && errorFn(err) })
     } else {
       _getCurrentPosition()

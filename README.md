@@ -38,7 +38,7 @@ name               | type    | default                               | descripti
 -------------------|---------|---------------------------------------|---------------------------------------------------------------------------------
 enableHighAccuracy | Boolean | true                                  | 是否要求高精度地理位置信息
 maximumAge         | Number  | 10000                                 | 设置缓存时间为1s，1s后重新获取地理位置信息
-timeout            | Number  | 5000                                  | 5s未返回信息则返回错误
+timeout            | Number  | 10000                                  | 10s未返回信息则返回错误
 fallBack           | String  | 'aMap'                                | 条件允许优先使用原生获取, 如果在IOS下是使用的是HTTP获取, 则使用备选, 这里是aMap
 qMap               | Object  | {}                                    | 腾讯地图配置
 qMap.key           | String  | 'OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77' | key配置
@@ -57,7 +57,7 @@ aMap.key           | String  | ''                                    | key配置
     Vue.use(vmGeo, {
       enableHighAccuracy: true, // 是否要求高精度地理位置信息
       maximumAge: 10000,         // 设置缓存时间为1s，1s后重新获取地理位置信息
-      timeout: 15000,            // 5s未返回信息则返回错误
+      timeout: 15000,            // 15s未返回信息则返回错误
       fallBack: 'aMap',         // 条件允许优先使用原生获取, 如果在IOS下是使用的是HTTP获取, 则使用备选, 这里是aMap
       qMap: {
         key: 'OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77', // official example app key, please use geo.register() to replace
@@ -104,34 +104,31 @@ aMap.key           | String  | ''                                    | key配置
 ```
 
 
-
-
-
-  ## 方法
+## 方法
  
-  #### getCurrentPosition(type)
+#### getCurrentPosition(type)
  
-  获取当前地理坐标, 默认使用h5模式(type), 也可以是: h5/qMap/bMap/aMap, 只能是这几个. 方法返回promise
+获取当前地理坐标, 默认使用h5模式(type), 也可以是: h5/qMap/bMap/aMap, 只能是这几个. 方法返回promise
  
-  #### watchPosition()
+#### watchPosition()
  
-  订阅模式, 当位置坐标发生变化, 则触发回调. 使用此方法前需要先执行getCurrentPosition(). 方法返回订阅id
+订阅模式, 当位置坐标发生变化, 则触发回调. 使用此方法前需要先执行getCurrentPosition(). 方法返回订阅id
  
-  ```
+```
   this.$geo.getCurrentPosition().then(() => {
      this.h5Timer = this.$geo.watchPosition((position) => {
         this.h5Geo = position
      })
   })
  
-  ```
+```
  
-  #### clearWatch(id)
+#### clearWatch(id)
  
-  取消订阅
+取消订阅
  
 
 
- ## LICENSE
+## LICENSE
 
  MIT
