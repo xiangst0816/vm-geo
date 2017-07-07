@@ -1,6 +1,6 @@
 {
   "name": "vm-geo",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A geolocation plugin for Vimo(vue)",
   "main": "dist/vm-geo.min.js",
   "scripts": {
