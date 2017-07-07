@@ -38,7 +38,7 @@ name               | type    | default                               | descripti
 -------------------|---------|---------------------------------------|---------------------------------------------------------------------------------
 enableHighAccuracy | Boolean | true                                  | 是否要求高精度地理位置信息
 maximumAge         | Number  | 10000                                 | 设置缓存时间为1s，1s后重新获取地理位置信息
-timeout            | Number  | 10000                                  | 10s未返回信息则返回错误
+timeout            | Number  | 10000                                 | 10s未返回信息则返回错误
 fallBack           | String  | 'aMap'                                | 条件允许优先使用原生获取, 如果在IOS下是使用的是HTTP获取, 则使用备选, 这里是aMap
 qMap               | Object  | {}                                    | 腾讯地图配置
 qMap.key           | String  | 'OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77' | key配置
