@@ -1,10 +1,10 @@
 {
-  "name": "vm-storage",
-  "version": "0.2.1",
-  "description": "A vue plugin for operate localStorage and sessionStorage.",
-  "main": "dist/vm-storage.min.js",
+  "name": "vm-geo",
+  "version": "0.0.2",
+  "description": "A geolocation plugin for Vimo(vue)",
+  "main": "dist/vm-geo.min.js",
   "scripts": {
-    "build": "webpack && cp dist/vm-storage.min.js examples/browser"
+    "build": "webpack && cp dist/vm-geo.min.js examples/browser"
   },
   "author": {
     "name": "Hsiang",
@@ -12,9 +12,7 @@
   },
   "keywords": [
     "vue",
-    "localStorage",
-    "sessionStorage",
-    "performance"
+    "geolocation"
   ],
   "license": "MIT",
   "devDependencies": {
@@ -30,6 +28,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:xiangsongtao/vm-storage.git"
+    "url": "git@github.com:xiangsongtao/vm-geo.git"
   }
 }

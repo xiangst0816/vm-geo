@@ -7,9 +7,9 @@ export default () => (
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, './dist'),
-      filename: 'vm-storage.min.js',
+      filename: 'vm-geo.min.js',
       libraryTarget: 'umd',
-      library: 'vmStorage'
+      library: 'vmGeo'
     },
     module: {
       rules: [
